@@ -17,6 +17,14 @@ for file in "$@"; do
     echo
     echo "Failed path: $file"
     echo "================================"
+    echo "Apply format: $file"
+    if ! packer fmt "$file"; then
+      error=1
+      echo "Apply format failed: $file"
+    else
+      error=0
+      echo "Apply format ok: $file"
+    fi
   fi
 done
 
